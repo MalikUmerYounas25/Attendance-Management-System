@@ -1,9 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package atd_mn_sys;
+age atd_mn_sys;
 
 import java.io.IOException;
 import java.net.URL;
@@ -27,11 +22,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author VINIT
- */
+
 public class TeacherDisplayController implements Initializable {
     private Label perdip;
     private Label nmedip;
@@ -73,6 +64,9 @@ public class TeacherDisplayController implements Initializable {
     @FXML
     private void onhome(ActionEvent event) {
         try{
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
+            
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("Loginas.fxml"));
             stage.setScene(new Scene(root));
@@ -100,7 +94,7 @@ public class TeacherDisplayController implements Initializable {
                 
                 int pcount = 0;
                 int acount = 0;
-                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attd_mng_sys","root",""); 
+                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attd_mng_sys?zeroDateTimeBehavior=convertToNull","root",""); 
                 Statement stmt = con.createStatement();
                 String query = "SELECT * FROM attendance";
 
@@ -129,6 +123,9 @@ public class TeacherDisplayController implements Initializable {
     @FXML
     private void onlogout(ActionEvent event) {
         try{
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
+            
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             stage.setScene(new Scene(root));
@@ -143,6 +140,9 @@ public class TeacherDisplayController implements Initializable {
     @FXML
     private void onback(ActionEvent event) {
         try{
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
+            
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             stage.setScene(new Scene(root));

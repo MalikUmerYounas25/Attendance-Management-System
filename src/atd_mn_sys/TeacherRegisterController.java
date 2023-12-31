@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package atd_mn_sys;
 
 import java.io.IOException;
@@ -24,11 +20,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author VINIT
- */
+
 public class TeacherRegisterController implements Initializable {
     @FXML
     private GridPane root;
@@ -70,7 +62,7 @@ public class TeacherRegisterController implements Initializable {
         }else{
 
             try {
-                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attd_mng_sys","root","");
+                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attd_mng_sys?zeroDateTimeBehavior=convertToNull","root","");
                 String query = "INSERT INTO teacher(`Name`, `Password`,`PID`)" +
                         "VALUES ('%s','%s','%s')";
                 con.createStatement().executeUpdate(
@@ -88,6 +80,9 @@ public class TeacherRegisterController implements Initializable {
     @FXML
     private void back2login(ActionEvent event) {
         try{
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
+            
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("TeacherLogin.fxml"));
             stage.setScene(new Scene(root));

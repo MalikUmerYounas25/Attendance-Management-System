@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package atd_mn_sys;
 
 import java.io.IOException;
@@ -24,28 +20,23 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import java.sql.SQLException;
 
-/**
- * FXML Controller class
- *
- * @author VINIT
- */
 public class RegisterController implements Initializable {
     @FXML
     private GridPane root;
     @FXML
-    private PasswordField password;
+    public PasswordField password;
     @FXML
-    private PasswordField confirmpassword;
+    public PasswordField confirmpassword;
     @FXML
     private Button registerbutton;
     @FXML
-    private Button backlogin;
+    public Button backlogin;
     @FXML
-    private Label status;
+    public Label status;
     @FXML
-    private TextField name;
+    public TextField name;
     @FXML
-    private TextField PID;
+    public TextField PID;
 
     /**
      * Initializes the controller class.
@@ -56,7 +47,7 @@ public class RegisterController implements Initializable {
     }    
 
     @FXML
-    private void userRegister(ActionEvent event) {
+    public void userRegister(ActionEvent event) {
         String u = name.getText();
         String PPID = PID.getText();
         String p = password.getText();
@@ -70,7 +61,7 @@ public class RegisterController implements Initializable {
         }else{
 
             try {
-                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attd_mng_sys","root","");
+                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attd_mng_sys?zeroDateTimeBehavior=convertToNull","root","");
                 String query = "INSERT INTO student(`Name`, `Password`,`PID`)" +
                         "VALUES ('%s','%s','%s')";
                 con.createStatement().executeUpdate(
@@ -86,8 +77,11 @@ public class RegisterController implements Initializable {
     }
 
     @FXML
-    private void back2login(ActionEvent event) {
+    public void back2login(ActionEvent event) {
         try{
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
+            
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             stage.setScene(new Scene(root));

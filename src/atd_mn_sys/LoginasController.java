@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package atd_mn_sys;
 
 import java.io.IOException;
@@ -16,11 +12,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author VINIT
- */
+
 public class LoginasController implements Initializable {
 
     /**
@@ -34,6 +26,11 @@ public class LoginasController implements Initializable {
     @FXML
     private void onTeacher(ActionEvent event) {
         try{
+            
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
+
+            
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("TeacherLogin.fxml"));
             stage.setScene(new Scene(root));
@@ -44,10 +41,14 @@ public class LoginasController implements Initializable {
             e.printStackTrace();
         }
     }
-
+    //WINDOW CLOSE HORAHI HAI NA yES BRO OK
     @FXML
     private void onStudent(ActionEvent event) {
         try{
+
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
+            
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("Login.fxml"));
             stage.setScene(new Scene(root));

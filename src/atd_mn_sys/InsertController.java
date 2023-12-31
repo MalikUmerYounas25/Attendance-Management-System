@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package atd_mn_sys;
 
 import java.io.IOException;
@@ -22,11 +18,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author VINIT
- */
 public class InsertController implements Initializable {
     @FXML
     private TextField stime;
@@ -76,7 +67,7 @@ public class InsertController implements Initializable {
                }
                else{
                //Class.forName("com.mysql.jdbc.Driver");  
-                    Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attd_mng_sys","root","");
+                    Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attd_mng_sys?zeroDateTimeBehavior=convertToNull","root","");
                     Statement stmt=con.createStatement(); 
                     String sql1 = "select * from student where Name='"+name+"';";
                     System.out.println(sql1);
@@ -104,6 +95,10 @@ public class InsertController implements Initializable {
     @FXML
     private void onhome(ActionEvent event) {
         try{
+                        
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
+            
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("Loginas.fxml"));
             stage.setScene(new Scene(root));
@@ -118,6 +113,8 @@ public class InsertController implements Initializable {
     @FXML
     private void onAddStu(ActionEvent event) {
         try{
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("StudentAdd.fxml"));
             stage.setScene(new Scene(root));
@@ -132,6 +129,8 @@ public class InsertController implements Initializable {
     @FXML
     private void ondetails(ActionEvent event) {
         try{
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("TeacherDisplay.fxml"));
             stage.setScene(new Scene(root));

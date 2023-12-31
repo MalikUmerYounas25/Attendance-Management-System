@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package atd_mn_sys;
 import atd_mn_sys.Atd_Mn_Sys;
 //import com.sun.xml.internal.bind.v2.runtime.unmarshaller.Loader;
@@ -29,10 +25,7 @@ import java.sql.Statement;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-/**
- *
- * @author VINIT
- */
+
 public class LoginController implements Initializable {
     
     
@@ -73,7 +66,7 @@ public class LoginController implements Initializable {
             status.setText("Password cannot be empty");
         }else {
             try {
-                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attd_mng_sys","root","");
+                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attd_mng_sys?zeroDateTimeBehavior=convertToNull","root","");
                 Statement stmt = con.createStatement();
                 String query = "SELECT * FROM student WHERE" +
                         " PID  = '%s' AND Password = '%s'";
@@ -92,6 +85,10 @@ public class LoginController implements Initializable {
                         }
                         System.out.println(uname);
                         System.out.println(u);
+                        
+                        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+                        currentStage.close();
+                        
                         Stage stage = new Stage();
                         FXMLLoader loader = new FXMLLoader();
                         loader.setLocation(getClass().getResource("Display.fxml"));
@@ -150,6 +147,8 @@ public class LoginController implements Initializable {
     @FXML
     private void onRegister(ActionEvent event) {
         try{
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("Register.fxml"));
             stage.setScene(new Scene(root));
@@ -164,6 +163,8 @@ public class LoginController implements Initializable {
     @FXML
     private void onBack(ActionEvent event) {
         try{
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("Loginas.fxml"));
             stage.setScene(new Scene(root));

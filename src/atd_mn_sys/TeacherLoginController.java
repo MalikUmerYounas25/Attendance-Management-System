@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package atd_mn_sys;
 
 import java.io.IOException;
@@ -24,11 +20,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
-/**
- * FXML Controller class
- *
- * @author VINIT
- */
 public class TeacherLoginController implements Initializable {
     @FXML
     private GridPane root;
@@ -63,7 +54,7 @@ public class TeacherLoginController implements Initializable {
             status.setText("Password cannot be empty");
         }else {
             try {
-                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attd_mng_sys","root",""); 
+                Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/attd_mng_sys?zeroDateTimeBehavior=convertToNull","root",""); 
                 String query = "SELECT * FROM teacher WHERE" +
                         " PID  = '%s' AND Password = '%s'";
 
@@ -71,6 +62,9 @@ public class TeacherLoginController implements Initializable {
                 if(found){
                     status.setText("Logged in successfully");
                     try{
+                        Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+                        currentStage.close();
+                        
                         Stage stage = new Stage();
                         Parent root = FXMLLoader.load(getClass().getResource("Insert.fxml"));
                         stage.setScene(new Scene(root));
@@ -93,6 +87,9 @@ public class TeacherLoginController implements Initializable {
     @FXML
     private void onRegister(ActionEvent event) {
         try{
+            Stage currentStage = (Stage) ((javafx.scene.Node) event.getSource()).getScene().getWindow();            
+            currentStage.close();
+            
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("TeacherRegister.fxml"));
             stage.setScene(new Scene(root));
@@ -107,6 +104,10 @@ public class TeacherLoginController implements Initializable {
     @FXML
     private void onBack(ActionEvent event) {
         try{
+            Stage currentStage = (Stage) root.getScene().getWindow();
+            currentStage.close();
+
+        
             Stage stage = new Stage();
             Parent root = FXMLLoader.load(getClass().getResource("Loginas.fxml"));
             stage.setScene(new Scene(root));
